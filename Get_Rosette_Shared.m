@@ -25,7 +25,9 @@ w2 = sqrt(slew_MAX*gamma/(2*pi*KMax) - w1^2); % n2 = 17?
 peak = 2*pi/gamma * KMax * w1; 
 slew = 2*pi/gamma * KMax*(w1^2 + w2^2);
 
-T_period = 0:dt:cycles*2*pi/w1;
+T_period1 = 0:dt:cycles*2*pi/w1;
+T_period = linspace(0, cycles*2*pi/w1, cycles*2*pi/w1/dt);
+disp([length(T_period), length(T_period1)]);
 TE = VCtl.TE;
 t_readout = T_period(end);
 
@@ -35,6 +37,8 @@ GTime = TE-t_readout/2 + T_period;
 % Ts is actual time for rosette function, i.e continue where it stops from last
 % excitation
 T_g = T_period + (VVar.TRCount-1)*t_readout;
+k = KMax*sin(w1*T_g).*exp(1i*w2*T_g);
+%disp([k(1) k(end)])
 GAmp =  pi/gamma*KMax*((w1+w2)*exp(1i*(w1+w2)*T_g) + (w1-w2)*exp(-1i*(w1-w2)*T_g));
 
 if GTime(1) < VCtl.TE/2
