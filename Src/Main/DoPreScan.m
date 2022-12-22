@@ -97,6 +97,20 @@ elseif isfield(VCtl, 'FSE_ShotNum') % FSE
     set(Simuh.Attrh1.ResFreq,'String',num2str(VCtl.ResFreq - 1));
     set(Simuh.Attrh1.SliceNum,'String',num2str(VCtl.SliceNum));
     set(Simuh.Attrh1.FSE_ETL,'String',num2str(VCtl.FSE_ETL));
+elseif isfield(VCtl, "ShotNum")
+    VCtl.ResFreq = VCtl.ResFreq + ~mod(VCtl.ResFreq,2); % guarantee odd number of Kx sample points for sampling echo peak when Kx = 0
+    VCtl.RFreq=VCtl.FOVFreq/(VCtl.ResFreq - 1);
+    VCtl.ResPhase = VCtl.ShotNum;% - mod(VCtl.Rosette_ShotNum,2); % guarantee even number of Ky sample points for Ky = 0
+    VCtl.RPhase=VCtl.FOVPhase/VCtl.ResPhase;
+    VCtl.SliceNum = max(1,VCtl.SliceNum - mod(VCtl.SliceNum,2)); % guarantee even number of Kz sample points for Kz = 0
+    VCtl.RSlice=VCtl.SliceThick;
+    VCtl.FOVSlice=VCtl.SliceNum*VCtl.SliceThick;
+    VCtl.TrajType='rosette';
+    VCtl.FirstPhNum = VCtl.ShotNum;
+    VCtl.SecondPhNum = VCtl.SliceNum;
+    set(Simuh.Attrh1.ResFreq,'String',num2str(VCtl.ResFreq - 1));
+    %set(Simuh.Attrh1.ResPhase,'String',num2str(VCtl.ResPhase));
+    set(Simuh.Attrh1.SliceNum,'String',num2str(VCtl.SliceNum));
 else  % Cartesian
     VCtl.ResFreq = VCtl.ResFreq + ~mod(VCtl.ResFreq,2); % guarantee odd number of Kx sample points for sampling echo peak when Kx = 0
     VCtl.RFreq=VCtl.FOVFreq/(VCtl.ResFreq - 1);
