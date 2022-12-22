@@ -27,7 +27,6 @@ slew = 2*pi/gamma * KMax*(w1^2 + w2^2);
 
 T_period1 = 0:dt:cycles*2*pi/w1;
 T_period = linspace(0, cycles*2*pi/w1, cycles*2*pi/w1/dt);
-disp([length(T_period), length(T_period1)]);
 TE = VCtl.TE;
 t_readout = T_period(end);
 

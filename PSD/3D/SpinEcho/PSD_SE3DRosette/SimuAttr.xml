@@ -9,7 +9,7 @@
             TE="19e-3"
             TEPerTR="1"
             TR="320e-3"/>
-   <Rosette CyclePerTR="2.5" ShotNum="30"/>
+   <Rosette CyclePerTR="2.5" ShotNum="60"/>
    <Advanced MasterTxCoil="1" MultiTransmit="$1'off','on'" NEX="1"
              NoFreqAlias="$2'off','on'"
              NoPhaseAlias="$2'off','on'"
@@ -18,7 +18,7 @@
              TEAnchor="$2'Start', 'Middle', 'End'"/>
    <Hardware B0="1.5" B1Level="1e-6" E1Level="1e-6" MaxGrad="10e-3" MaxSlewRate="13"
              MinUpdRate="4e-6"
-             Model="GE Discovery MR750"
+             Model="GE Signa system"
              NoiseLevel="1"
              SpinPerVoxel="1"/>
    <Recon AutoRecon="$2'off','on'" ExternalEng="" OutputType="$1'MAT','ISMRMRD','Both'"
