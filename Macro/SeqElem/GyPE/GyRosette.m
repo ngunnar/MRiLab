@@ -1,7 +1,4 @@
 function [GAmp,GTime] = GyRosette(p)
-
-[GAmp, Gx, Gy, GTime, GTimeX, GTimeY] = Get_Rosette_Shared(p);
-
-GAmp = Gy;
-GTime = GTimeY;
+[GAmp, GTime] = Get_Rosette_Shared(p);
+[GAmp, GTime] = Fix_slew_rate(imag(GAmp), GTime);
 end

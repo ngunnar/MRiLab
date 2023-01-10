@@ -1,8 +1,7 @@
 function [GAmp,GTime] = ADCRosette(p)
-
 global VCtl;
 
-[GAmp, Gx, Gy, GTime, GTimeX, GTimeY] = Get_Rosette_Shared(p);
+[GAmp, GTime] = Get_Rosette_Shared(p);
 
 tStart = GTime(1);
 tEnd = GTime(end);
